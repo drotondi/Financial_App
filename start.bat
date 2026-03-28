@@ -3,28 +3,18 @@ echo.
 echo === Wealth Tracker - Iniciando... ===
 echo.
 
-echo [1/3] Instalando dependencias Python...
+echo [1/2] Instalando dependencias Python...
 pip install -r backend\requirements.txt
 if errorlevel 1 (
-    echo ERROR: Fallo la instalacion de Python. Asegurate de tener Python instalado.
+    echo.
+    echo ERROR: No se pudo instalar Python o sus dependencias.
+    echo Asegurate de tener Python instalado. Ver instrucciones en README.md
     pause
     exit /b 1
 )
 
 echo.
-echo [2/3] Compilando el frontend...
-cd frontend
-call npm install
-call npm run build
-cd ..
-if errorlevel 1 (
-    echo ERROR: Fallo la compilacion del frontend. Asegurate de tener Node.js instalado.
-    pause
-    exit /b 1
-)
-
-echo.
-echo [3/3] Iniciando el servidor...
+echo [2/2] Iniciando el servidor...
 echo.
 echo ============================================
 echo   Abre tu navegador en: http://localhost:8000

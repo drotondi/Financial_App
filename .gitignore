@@ -11,8 +11,8 @@ __pycache__/
 
 # Node
 node_modules/
-dist/
 .vite/
+# dist/ — intentionally committed so users don't need Node.js to run the app
 
 # Misc
 .DS_Store
