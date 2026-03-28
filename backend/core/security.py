@@ -1,18 +1,29 @@
+import hashlib
+import os
+import base64
 from datetime import datetime, timedelta
 from typing import Optional
 from jose import JWTError, jwt
-from passlib.context import CryptContext
 from .config import settings
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-
-def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return pwd_context.verify(plain_password, hashed_password)
+_ITERATIONS = 600_000
+_SEP = "$"
 
 
 def get_password_hash(password: str) -> str:
-    return pwd_context.hash(password)
+    salt = os.urandom(32)
+    dk = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, _ITERATIONS)
+    return base64.b64encode(salt).decode() + _SEP + base64.b64encode(dk).decode()
+
+
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    try:
+        salt_b64, hash_b64 = hashed_password.split(_SEP, 1)
+        salt = base64.b64decode(salt_b64)
+        dk = hashlib.pbkdf2_hmac("sha256", plain_password.encode(), salt, _ITERATIONS)
+        return base64.b64encode(dk).decode() == hash_b64
+    except Exception:
+        return False
 
 
 def create_access_token(data: dict) -> str:
