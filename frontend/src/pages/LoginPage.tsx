@@ -29,7 +29,11 @@ export default function LoginPage() {
       login(data.access_token, data.user)
       navigate('/dashboard', { replace: true })
     } catch (err: any) {
-      setError(err?.response?.data?.detail ?? 'Error al iniciar sesión')
+      const detail = err?.response?.data?.detail
+      const msg = Array.isArray(detail)
+        ? detail.map((d: any) => d.msg).join(', ')
+        : detail ?? 'No se pudo conectar con el servidor. Asegurate de que start.bat esté corriendo.'
+      setError(msg)
     } finally {
       setLoading(false)
     }
