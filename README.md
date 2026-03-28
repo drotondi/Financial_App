@@ -11,23 +11,34 @@ Aplicación web personal para registrar y visualizar patrimonio: activos, pasivo
 
 ## Inicio rápido
 
-### Backend
+### Un solo comando (recomendado)
 
 ```bash
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload
-# API: http://localhost:8000
-# Swagger: http://localhost:8000/docs
+bash start.sh
 ```
 
-### Frontend
+Esto instala todas las dependencias, compila el frontend y arranca el servidor.
+**Accedé a la app en: http://localhost:8000**
 
+### Manual (desarrollo)
+
+**Backend + frontend integrado:**
 ```bash
-cd frontend
-npm install
-npm run dev
-# App: http://localhost:5173
+cd frontend && npm install && npm run build
+cd ../backend && pip install -r requirements.txt
+cd .. && python -m uvicorn backend.main:app --reload
+# App en http://localhost:8000
+# Swagger en http://localhost:8000/docs
+```
+
+**O para desarrollo con hot-reload del frontend:**
+```bash
+# Terminal 1 — backend
+python -m uvicorn backend.main:app --reload
+
+# Terminal 2 — frontend dev server
+cd frontend && npm run dev
+# App en http://localhost:5173
 ```
 
 ## Módulos
