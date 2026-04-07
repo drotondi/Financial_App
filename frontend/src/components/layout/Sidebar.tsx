@@ -5,6 +5,7 @@ const NAV = [
   { to: '/assets', label: 'Activos', icon: '↑' },
   { to: '/liabilities', label: 'Pasivos', icon: '↓' },
   { to: '/transactions', label: 'Transacciones', icon: '⇄' },
+  { to: '/hoshin', label: 'Hoshin Kanri', icon: '◎' },
   { to: '/settings', label: 'Configuración', icon: '⚙' },
 ]
 

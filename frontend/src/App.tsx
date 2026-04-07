@@ -7,6 +7,10 @@ import AssetsPage from './pages/AssetsPage'
 import LiabilitiesPage from './pages/LiabilitiesPage'
 import TransactionsPage from './pages/TransactionsPage'
 import SettingsPage from './pages/SettingsPage'
+import HoshinPage from './pages/hoshin/HoshinPage'
+import HoshinMatrixPage from './pages/hoshin/HoshinMatrixPage'
+import HoshinProgramsPage from './pages/hoshin/HoshinProgramsPage'
+import HoshinDashboardPage from './pages/hoshin/HoshinDashboardPage'
 
 function RequireAuth({ children }: { children: React.ReactNode }) {
   const token = useAuthStore((s) => s.token)
@@ -32,6 +36,12 @@ export default function App() {
           <Route path="liabilities" element={<LiabilitiesPage />} />
           <Route path="transactions" element={<TransactionsPage />} />
           <Route path="settings" element={<SettingsPage />} />
+          <Route path="hoshin" element={<HoshinPage />}>
+            <Route index element={<Navigate to="matrix" replace />} />
+            <Route path="matrix" element={<HoshinMatrixPage />} />
+            <Route path="programs" element={<HoshinProgramsPage />} />
+            <Route path="dashboard" element={<HoshinDashboardPage />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
