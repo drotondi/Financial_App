@@ -3,3 +3,4 @@ from .asset import Asset
 from .liability import Liability
 from .transaction import Transaction
 from .exchange_rate import ExchangeRate
+from .hoshin import StrategicObjective, AnnualObjective, HoshinProgram, HoshinKPI, HoshinCorrelation, InitiativeTask

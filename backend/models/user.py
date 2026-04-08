@@ -18,3 +18,8 @@ class User(Base):
     liabilities = relationship("Liability", back_populates="user", cascade="all, delete-orphan")
     transactions = relationship("Transaction", back_populates="user", cascade="all, delete-orphan")
     exchange_rates = relationship("ExchangeRate", back_populates="user", cascade="all, delete-orphan")
+    strategic_objectives = relationship("StrategicObjective", back_populates="user", cascade="all, delete-orphan")
+    annual_objectives = relationship("AnnualObjective", back_populates="user", cascade="all, delete-orphan")
+    hoshin_programs = relationship("HoshinProgram", back_populates="user", cascade="all, delete-orphan")
+    hoshin_kpis = relationship("HoshinKPI", back_populates="user", cascade="all, delete-orphan")
+    hoshin_correlations = relationship("HoshinCorrelation", back_populates="user", cascade="all, delete-orphan")
